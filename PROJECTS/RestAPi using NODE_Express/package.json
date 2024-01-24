@@ -1,0 +1,18 @@
+{
+  "name": "restapi-using-node_express",
+  "version": "1.0.0",
+  "description": "project_01 restAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon Index.js"
+  },
+  "keywords": [
+    "restAPI"
+  ],
+  "author": "rahul",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -29,6 +29,18 @@ app.get("/:shortId", async (req, res) => {
   res.redirect(entry.redirectUrl);
 });
 
+app.get("/analytics/:shortId", async (req, res) => {
+  const shortId = req.params.shortId;
+  const result = await URL.findOne({ shortId });
+  // console.log(result);
+
+  return res.json({
+    msg: "success",
+    totalClicks: result.visitHistory.length,
+    analytics: result.visitHistory,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
 });

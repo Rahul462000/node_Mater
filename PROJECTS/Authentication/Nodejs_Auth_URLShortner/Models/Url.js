@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const URLSchema = new mongoose.Schema(
+const UrlSChema = new mongoose.Schema(
   {
     shortId: {
       type: String,
@@ -12,9 +12,9 @@ const URLSchema = new mongoose.Schema(
     },
     visitHistory: [{ timestamp: { type: Number } }],
   },
-  { timeseries: true }
+  { timestamps: true }
 );
 
-const URLDAta = mongoose.model("URLDAta", URLSchema);
+const URL = mongoose.model("URL", UrlSChema);
 
-module.exports = URLDAta;
+module.exports = URL;

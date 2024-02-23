@@ -1,8 +1,8 @@
 {
-  "name": "nodejs-authentication",
+  "name": "nodejs_auth_urlshortner",
   "version": "1.0.0",
   "description": "",
-  "main": "Index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon Index.js"
@@ -11,9 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongoose": "^8.1.2",
+    "mongoose": "^8.1.3",
     "shortid": "^2.2.16"
   }
 }

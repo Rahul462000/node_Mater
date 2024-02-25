@@ -14,15 +14,10 @@
     <title>login</title>
   </head>
   <body>
-    <form action="/login" method="POST">
+    <form action="/user/login" method="POST">
       <h1>Login Now</h1>
       <input type="text" name="firstName" placeholder="FirstName Here" />
-      <input
-        type="email"
-        name="email"
-        placeholder="email here"
-        value="<%=locals.email%> "
-      />
+      <input type="email" name="email" placeholder="email here" />
       <input type="password" name="password" placeholder="password here" />
       <p class="error"><%=locals.message%></p>
       <button type="submit">LOg IN</button>

@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
   </head>
   <body>
     <h1>Welcome to Home page</h1>
@@ -20,12 +27,15 @@
     </div>
     <div>
       <% if (locals.urls) { %>
-      <table>
+      <table style="width: 100%">
         <thead>
-          <th>S.NO</th>
-          <th>shortID</th>
-          <th>redirect</th>
-          <th>clicks</th>
+          <tr>
+            <th>S.NO</th>
+            <th>shortID</th>
+            <th>redirect</th>
+            <th>Complete URL</th>
+            <th>clicks</th>
+          </tr>
         </thead>
         <tbody>
           <% urls.forEach((url,indx) => { %>
@@ -33,6 +43,7 @@
             <td><%=indx+1 %></td>
             <td><%=url.shortId %></td>
             <td><%=url.redirectUrl %></td>
+            <td>http://localhost:3000/url/<%=url.shortId %></td>
             <td><%=url.visitHistory.length %></td>
           </tr>
           <% }) %>

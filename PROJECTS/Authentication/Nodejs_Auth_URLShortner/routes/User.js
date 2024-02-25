@@ -24,7 +24,13 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   let createUSER = await USER.findOne({ email });
+  console.log("user", createUSER);
   if (!createUSER) return res.redirect("/register");
+  const isMatch = await bcrypt.compare(password, createUSER.password);
+  if (!isMatch) {
+    return res.render("login", { email, message: "incorrect password" });
+  }
+  res.redirect("/");
 });
 
 module.exports = router;

@@ -7,10 +7,12 @@ async function CreateNewUrl(req, res) {
   console.log(bodyData.url);
   const ShortID = shortid();
   console.log(ShortID);
+
   await URL.create({
     shortId: ShortID,
     redirectUrl: bodyData.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
   return res.render("Home", { id: ShortID });
 }

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      * {
+        background-color: rgb(63, 39, 39);
+      }
       table,
       th,
       td {
@@ -14,10 +17,6 @@
   </head>
   <body>
     <h1>Welcome to Home page</h1>
-    <h2>This is the ShortURL generator</h2>
-    <% if (locals.id) { %>
-    <p>Url generated http://localhost:3000/url/<%=id %></p>
-    <% } %>
     <div>
       <form action="/url" method="POST">
         <label>Enter your original url</label>

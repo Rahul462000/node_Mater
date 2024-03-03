@@ -1,8 +1,15 @@
+const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const USER = require("../Models/User");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
+const { setUser } = require("../service/auth");
 
 const router = express.Router();
+const app = express();
+
+app.use(cookieParser());
 
 // creating the user here
 router.post("/", async (req, res) => {
@@ -18,18 +25,22 @@ router.post("/", async (req, res) => {
     email,
     password: hashPassword,
   });
-  return res.render("Home");
+  return res.redirect("/");
 });
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   let createUSER = await USER.findOne({ email });
   console.log("user", createUSER);
-  if (!createUSER) return res.redirect("/register");
+  if (!createUSER) return res.status(201).redirect("/Register");
   const isMatch = await bcrypt.compare(password, createUSER.password);
   if (!isMatch) {
-    return res.render("login", { email, message: "incorrect password" });
+    return res.render("login", { email, error: "incorrect password" });
   }
+  const sessionID = uuidv4();
+  setUser(sessionID, createUSER);
+  res.cookie("uid", sessionID);
+
   res.redirect("/");
 });
 

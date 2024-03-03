@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const { connectToMonggoDb } = require("./db/connections");
+const { restrictToLoggedInUserOnly, checkAuth } = require("./middlewares/auth");
 const URLRoute = require("./routes/Url");
 const staticROUTe = require("./routes/staticROUTe");
 const USerRoutes = require("./routes/User");
@@ -17,10 +19,11 @@ app.set("views", path.resolve("./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use("/url", URLRoute);
+app.use("/url", restrictToLoggedInUserOnly, URLRoute);
 app.use("/user", USerRoutes);
-app.use("/", staticROUTe);
+app.use("/", checkAuth, staticROUTe);
 
 app.get("/url/:shortId", async (req, res) => {
   const shortId = req.params.shortId;

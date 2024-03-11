@@ -37,10 +37,13 @@ router.post("/login", async (req, res) => {
   if (!isMatch) {
     return res.render("login", { email, error: "incorrect password" });
   }
-  const sessionID = uuidv4();
-  setUser(sessionID, createUSER);
-  res.cookie("uid", sessionID);
+  // const sessionID = uuidv4(); /// 1. a session ID for a user
+  // setUser(sessionID, createUSER); //2. to store this session ID with this user object
+  // res.cookie("uid", sessionID); //3. setting the cookie inside the double bracket
 
+  // now we will use the statless authentication with jsonwebtoken
+  const token = setUser(createUSER);
+  res.cookie("uid", token);
   res.redirect("/");
 });
 

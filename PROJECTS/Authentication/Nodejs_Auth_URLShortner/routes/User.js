@@ -31,7 +31,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   let createUSER = await USER.findOne({ email });
-  console.log("user", createUSER);
+  // console.log("user", createUSER);
   if (!createUSER) return res.status(201).redirect("/Register");
   const isMatch = await bcrypt.compare(password, createUSER.password);
   if (!isMatch) {
@@ -43,8 +43,9 @@ router.post("/login", async (req, res) => {
 
   // now we will use the statless authentication with jsonwebtoken
   const token = setUser(createUSER);
-  res.cookie("uid", token);
-  res.redirect("/");
+  res.cookie("token", token); // we can add domain, and expire time of the cookie after the token,
+  return res.redirect("/");
+  // return res.json({ token });
 });
 
 module.exports = router;

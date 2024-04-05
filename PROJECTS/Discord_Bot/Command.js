@@ -11,9 +11,7 @@ const commands = [
   },
 ];
 
-const rest = new REST({ version: "10" }).setToken(
-  "MTIyMzUyMjc5OTE5MzE2NTg3Ng.GIOkXW.7Dv32bbrCWeoY6hdyZayKLp30ZfpPm8CE5QF8I"
-);
+// here the secret key command is present
 
 (async () => {
   try {
